@@ -33,3 +33,5 @@ test('should handle removeExpense', () => {
     expect(history.push).toHaveBeenLastCalledWith('/')
     expect(removeExpense).toHaveBeenLastCalledWith({ id: expenses[1].id })
 })
+
+console.log('string')
