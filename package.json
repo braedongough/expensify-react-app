@@ -30,7 +30,6 @@
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
     "express": "^4.16.4",
-    "fsevents": "^2.0.1",
     "jest": "^23.6.0",
     "live-server": "^1.2.0",
     "mini-css-extract-plugin": "^0.4.5",
