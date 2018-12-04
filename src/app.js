@@ -14,9 +14,7 @@ const store = configureStore()
 
 store.dispatch(addExpense({ description: 'gas bill', amount: 90000, createdAt: moment().add(1, 'day').valueOf() }))
 store.dispatch(addExpense({ description: 'rent', amount: 12345, createdAt: moment().subtract(1, 'day').valueOf() }))
-store.dispatch(addExpense({ description: 'water bill', amount: 90300, createdAt: moment().valueOf()}))
-
-const state = store.getState()
+store.dispatch(addExpense({ description: 'water bill', amount: 90300, createdAt: moment().valueOf() }))
 
 const jsx = (
     <Provider store={store}>

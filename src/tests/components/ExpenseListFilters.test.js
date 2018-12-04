@@ -32,3 +32,40 @@ test('should render ExpenseListFilters with alt data correctly', () => {
     })
     expect(wrapper).toMatchSnapshot()
 })
+
+test('should handle text change', () => {
+    const value = 'butt'
+    wrapper.find('input').simulate('change', {
+        target: { value }
+    })
+    expect(setTextFilter).toHaveBeenLastCalledWith(value)
+})
+
+test('should sort by date', () => {
+    const value = 'date'
+    wrapper.find('select').simulate('change', {
+        target: { value }
+    })
+    expect(sortByDate).toHaveBeenCalled()
+})
+
+test('should sort by amount', () => {
+    const value = 'amount'
+    wrapper.find('select').simulate('change', {
+        target: { value }
+    })
+    expect(sortByAmount).toHaveBeenCalled()
+})
+test('should handle date changes', () => {
+    const startDate = altFilters.startDate
+    const endDate = altFilters.endDate
+    wrapper.find('withStyles(DateRangePicker)').prop('onDatesChange')({ startDate, endDate })
+    expect(setStartDate).toHaveBeenLastCalledWith(startDate)
+    expect(setEndDate).toHaveBeenLastCalledWith(endDate)
+})
+
+test('should handle date focus change', () => {
+    const calendarFocused = 'startDate'
+    wrapper.find('withStyles(DateRangePicker)').prop('onFocusChange')(calendarFocused)
+    expect(wrapper.state('calendarFocused')).toBe(calendarFocused)
+})

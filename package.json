@@ -5,12 +5,14 @@
   "license": "MIT",
   "scripts": {
     "serve": "live-server public",
-    "build": "webpack --watch",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "jest --config=jest.config.json"
   },
   "dependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
@@ -18,7 +20,6 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
@@ -26,6 +27,7 @@
     "fsevents": "^2.0.1",
     "jest": "^23.6.0",
     "live-server": "^1.2.0",
+    "mini-css-extract-plugin": "^0.4.5",
     "moment": "^2.22.2",
     "node-sass": "^4.10.0",
     "normalize.css": "^8.0.0",
