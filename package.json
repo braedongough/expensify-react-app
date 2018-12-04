@@ -2,6 +2,9 @@
   "name": "expensify",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "11.3.0"
+  },
   "license": "MIT",
   "scripts": {
     "serve": "live-server public",
