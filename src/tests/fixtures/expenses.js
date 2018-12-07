@@ -11,7 +11,7 @@ export const expenses = [{
     id: '2',
     description: 'butt juice',
     note: '',
-    amount: 434343434,
+    amount: 2, //434343434
     createdAt: moment(0).subtract(4, 'days').valueOf()
 }, {
     id: '3',
