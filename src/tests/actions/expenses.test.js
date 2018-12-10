@@ -1,7 +1,16 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import database from '../../firebase/firebase'
-import { startAddExpense, addExpense, removeExpense, startRemoveExpense, editExpense, setExpenses, startSetExpenses } from '../../actions/expenses'
+import {
+    startAddExpense,
+    addExpense,
+    removeExpense,
+    startRemoveExpense,
+    editExpense,
+    startEditExpense,
+    setExpenses,
+    startSetExpenses
+} from '../../actions/expenses'
 import { expenses } from '../fixtures/expenses'
 
 const createMockStore = configureMockStore([thunk])
@@ -24,15 +33,16 @@ test('should setup remove expense action object', () => {
 
 test('should remove expense from firebase and store', (done) => {
     const store = createMockStore()
-    store.dispatch(startRemoveExpense('1')).then(() => {
+    const id = expenses[0].id
+    store.dispatch(startRemoveExpense(id)).then(() => {
         const actions = store.getActions()
         expect(actions[0]).toEqual({
             type: 'REMOVE_EXPENSE',
-            id: '1'
+            id: id
         })
     })
     database.ref('expenses/1').once('value').then((snapshot) => {
-        expect(snapshot.val()).toBe(null)
+        expect(snapshot.val()).toBeFalsy()
         done()
     })
 })
@@ -43,6 +53,26 @@ test('should setup edit expense action object', () => {
         type: 'EDIT_EXPENSE',
         id: '12345',
         update: { note: 'hello you' }
+    })
+})
+
+test('should edit expense from firebase and store', (done) => {
+    const store = createMockStore()
+    const id = expenses[0].id
+    const update = {
+        description: 'This expense has been updated'
+    }
+    store.dispatch(startEditExpense(id, update)).then(() => {
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type: 'EDIT_EXPENSE',
+            id: id,
+            update: update
+        })
+    })
+    database.ref(`expenses/${id}`).once('value').then((snapshot) => {
+        expect(snapshot.val().description).toBe(update.description)
+        done()
     })
 })
 

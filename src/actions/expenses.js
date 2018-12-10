@@ -34,18 +34,19 @@ export const startRemoveExpense = (id) => {
     }
 }
 
-//creat startRemoveExpense, receives same args as removeExpense
-//"Should remove expense from firebase"
-//to verify, assert that snapshot.val() === null  
-// use startRemoveExpense in EditExpensePage
-//update tests for EditExpensePage
-
 //EDIT_EXPENSE
 export const editExpense = (id, update) => ({
     type: 'EDIT_EXPENSE',
     id,
     update
 })
+
+export const startEditExpense = (id, update) => {
+    return async (dispatch) => {
+        await database.ref(`expenses/${id}`).update(update)
+        dispatch(editExpense(id, update))
+    }
+}
 
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
