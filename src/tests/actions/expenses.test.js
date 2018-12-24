@@ -32,7 +32,7 @@ test('should setup remove expense action object', () => {
 })
 
 test('should remove expense from firebase and store', (done) => {
-    const store = createMockStore()
+    const store = createMockStore({})
     const id = expenses[0].id
     store.dispatch(startRemoveExpense(id)).then(() => {
         const actions = store.getActions()
@@ -57,7 +57,7 @@ test('should setup edit expense action object', () => {
 })
 
 test('should edit expense from firebase and store', (done) => {
-    const store = createMockStore()
+    const store = createMockStore({})
     const id = expenses[0].id
     const update = {
         description: 'This expense has been updated'
